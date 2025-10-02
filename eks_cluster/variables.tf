@@ -90,9 +90,10 @@ variable "custom_ami_type" {
 
 
 # ## HELM ###
-# variable "auto_scale_options" {
-#   description = "Auto scaling options for the cluster autoscaler"
-#   type = object({
-#     min = number
-#     max = number
-#   })
+variable "auto_scale_options" {
+  description = "Auto scaling options for the cluster autoscaler"
+  type = object({
+    min = number
+    max = number
+  })
+}
