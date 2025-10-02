@@ -1,0 +1,1 @@
+# arquitetura-containers-aws-day_19-eks_vanila
