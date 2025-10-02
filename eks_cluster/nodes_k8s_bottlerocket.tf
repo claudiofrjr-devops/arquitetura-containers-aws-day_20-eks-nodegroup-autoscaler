@@ -1,7 +1,7 @@
-resource "aws_eks_node_group" "spot" {
+resource "aws_eks_node_group" "bottlerocket" {
 
   cluster_name    = aws_eks_cluster.main.id
-  node_group_name = format("%s-spot", aws_eks_cluster.main.id)
+  node_group_name = format("%s-bottlerocket", aws_eks_cluster.main.id)
 
   node_role_arn = aws_iam_role.eks_nodes_role.arn
 
@@ -15,11 +15,13 @@ resource "aws_eks_node_group" "spot" {
 
   subnet_ids = data.aws_ssm_parameter.pod_subnets[*].value
 
-  capacity_type = "SPOT"
+  capacity_type = "ON_DEMAND"
+
+  ami_type = "BOTTLEROCKET_X86_64"
 
   labels = {
-    "capacity/os"   = "AMAZON_LINUX"
-    "capacity/type" = "SPOT"
+    "capacity/os"   = "BOTTLEROCKET"
+    "capacity/type" = "ON_DEMAND"
     "capacity/arch" = "x86_64"
     #"ingress/ready" = "true"
   }
